@@ -1,1 +1,60 @@
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.11s
+   0.078282200s  INFO prepare_target{force=false package_id=Halo2_test v0.1.0 (C:\Users\rotte\OneDrive\Desktop\Halo2_test\Halo2_test\Halo2_test) target="Halo2_test"}: cargo::core::compiler::fingerprint: fingerprint error for Halo2_test v0.1.0 (C:\Users\rotte\OneDrive\Desktop\Halo2_test\Halo2_test\Halo2_test)/Check { test: false }/TargetInner { name: "Halo2_test", doc: true, ..: with_path("C:\\Users\\rotte\\OneDrive\\Desktop\\Halo2_test\\Halo2_test\\Halo2_test\\src\\main.rs", Edition2024) }
+   0.078345300s  INFO prepare_target{force=false package_id=Halo2_test v0.1.0 (C:\Users\rotte\OneDrive\Desktop\Halo2_test\Halo2_test\Halo2_test) target="Halo2_test"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\rotte\OneDrive\Desktop\Halo2_test\Halo2_test\Halo2_test\target\debug\.fingerprint\Halo2_test-3ed782588654474b\bin-Halo2_test`
+
+Caused by:
+    Impossibile trovare il file specificato. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   0.111799600s  INFO prepare_target{force=false package_id=Halo2_test v0.1.0 (C:\Users\rotte\OneDrive\Desktop\Halo2_test\Halo2_test\Halo2_test) target="Halo2_test"}: cargo::core::compiler::fingerprint: fingerprint error for Halo2_test v0.1.0 (C:\Users\rotte\OneDrive\Desktop\Halo2_test\Halo2_test\Halo2_test)/Check { test: true }/TargetInner { name: "Halo2_test", doc: true, ..: with_path("C:\\Users\\rotte\\OneDrive\\Desktop\\Halo2_test\\Halo2_test\\Halo2_test\\src\\main.rs", Edition2024) }
+   0.111837900s  INFO prepare_target{force=false package_id=Halo2_test v0.1.0 (C:\Users\rotte\OneDrive\Desktop\Halo2_test\Halo2_test\Halo2_test) target="Halo2_test"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\rotte\OneDrive\Desktop\Halo2_test\Halo2_test\Halo2_test\target\debug\.fingerprint\Halo2_test-b3643ebec10fef93\test-bin-Halo2_test`
+
+Caused by:
+    Impossibile trovare il file specificato. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+    Checking Halo2_test v0.1.0 (C:\Users\rotte\OneDrive\Desktop\Halo2_test\Halo2_test\Halo2_test)
+error: could not compile `Halo2_test` (bin "Halo2_test") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `Halo2_test` (bin "Halo2_test" test) due to 1 previous error

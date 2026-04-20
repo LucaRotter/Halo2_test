@@ -3,7 +3,7 @@ use std::marker::PhantomData;
 
 //definizione delle colonne
 #[derive(Clone, Debug)]
-struct MyConfig{
+pub struct MyConfig{
     a: Column<Advice>,
     b: Column<Advice>,
     c: Column<Instance>,
@@ -11,10 +11,10 @@ struct MyConfig{
 }
 
 //definizione del circuito
-struct MyCircuit<F>{
-    a: Value<F>,
-    b: Value<F>,
-    _marker: PhantomData<F>,
+pub struct MyCircuit<F>{
+    pub(crate) a: Value<F>,
+    pub(crate) b: Value<F>,
+    pub(crate) _marker: PhantomData<F>,
 }
 
 impl<F: Field> Circuit<F> for MyCircuit<F>{

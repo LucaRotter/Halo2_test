@@ -7,6 +7,7 @@ name = "Halo2_test"
 version = "0.1.0"
 dependencies = [
  "halo2_proofs",
+ "pasta_curves",
 ]
 
 [[package]]
