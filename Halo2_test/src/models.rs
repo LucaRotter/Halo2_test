@@ -1,5 +1,6 @@
 use halo2_proofs::{circuit::*, plonk::*, poly::Rotation};
 use std::marker::PhantomData;
+use halo2_proofs::arithmetic::Field;
 
 //definizione delle colonne
 #[derive(Clone, Debug)]
@@ -9,7 +10,7 @@ pub struct MyConfig{
     c: Column<Instance>,
     s: Selector,
 }
-
+#[derive(Default)]
 //definizione del circuito
 pub struct MyCircuit<F>{
     pub(crate) a: Value<F>,
