@@ -1,1 +1,1 @@
-C:\Users\rotte\OneDrive\Desktop\Halo2_test\Halo2_test\Halo2_test\target\debug\Halo2_test.exe: C:\Users\rotte\OneDrive\Desktop\Halo2_test\Halo2_test\Halo2_test\src\main.rs C:\Users\rotte\OneDrive\Desktop\Halo2_test\Halo2_test\Halo2_test\src\models.rs
+C:\Users\rotte\Desktop\halo2_test\Halo2_test\Halo2_test\target\debug\Halo2_test.exe: C:\Users\rotte\Desktop\halo2_test\Halo2_test\Halo2_test\src\main.rs C:\Users\rotte\Desktop\halo2_test\Halo2_test\Halo2_test\src\models.rs

@@ -6,6 +6,7 @@ version = 4
 name = "Halo2_test"
 version = "0.1.0"
 dependencies = [
+ "ff",
  "halo2_proofs",
  "pasta_curves",
 ]

@@ -4,5 +4,6 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+ff = "0.13.1"
 halo2_proofs = "0.3.0"
 pasta_curves = "0.5.0"
