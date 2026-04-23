@@ -3,8 +3,8 @@ use std::marker::PhantomData;
 use halo2_proofs::arithmetic::Field;
 use ff::PrimeField;
 
-
-pub struct MathChip{
+#[derive(Clone, Debug)]
+pub struct MathConfig {
     pub a: Column<Advice>,
     pub b: Column<Advice>,
     pub out: Column<Advice>,//risultato intermedio
@@ -84,15 +84,13 @@ impl<F: PrimeField> MathChip<F> {
         })
     }
 
-    pub fn do_add(&self, mut layouter: impl Layouter<F>, a: Value<F>, b: Value<F>) -> Result<(), Error> {
+    pub fn do_add(&self, mut layouter: impl Layouter<F>, a: Value<F>, b: Value<F>) -> Result<AssignedCell<F, F>, Error> {
         layouter.assign_region(|| "add operation", |mut region| {
             self.config.s_add.enable(&mut region, 0)?;
             region.assign_advice(|| "a", self.config.a, 0, || a)?;
             region.assign_advice(|| "b", self.config.b, 0, || b)?;
-            // Calcoliamo il risultato per l'advice 'out'
             let res = a.zip(b).map(|(a, b)| a + b);
-            let cell= region.assign_advice(|| "out", self.config.out, 0, || res)?;
-            Ok(cell)
+            region.assign_advice(|| "out", self.config.out, 0, || res)
         })
     }
 
@@ -109,16 +107,42 @@ impl<F: PrimeField> MathChip<F> {
         })
     }
 
-    pub fn synthesize(&self,config: Self::Config, mut layouter: impl Layouter<F>) -> Result<(), Error> {
-        let chip= MathChip::construct(config);
-        //addizione
-        let somma = self.a.zip(self.b).map(|(a, b)| a + b);
-        let add_cell = chip.do_add(layouter.namespace(|| "addizione"), self.a, self.b)?;
+    
 
-        chip.do_mul(layouter.namespace(|| "moltiplicazione"), add_cell.value(), self.c)?;
+}
 
-        chip.do_mux(layouter.namespace(|| "mux"), somma, self.c, self.bit)?;
-        Ok(())
+//circuito che utilizza il chip
+#[derive(Default)]
+pub struct MathCircuit_Chip<F> {
+    pub a: Value<F>,
+    pub b: Value<F>,
+    pub c: Value<F>,
+    pub bit: Value<F>,
+}
+
+impl<F: PrimeField> Circuit<F> for MathCircuit_Chip<F> {
+    type Config = MathConfig;
+    type FloorPlanner = SimpleFloorPlanner;
+
+    fn without_witnesses(&self) -> Self {
+        Self::default()
     }
 
+    fn configure(meta: &mut ConstraintSystem<F>) -> Self::Config {
+       MathChip::configure(meta)
+    }
+    
+    fn synthesize(&self, config: Self::Config, mut layouter: impl Layouter<F>) -> Result<(), Error> {
+        let chip = MathChip::construct(config);
+        // 1. Esegui addizione: a + b
+        let add_cell = chip.do_add(layouter.namespace(|| "step 1"), self.a, self.b)?;
+
+        // 2. Esegui moltiplicazione usando il risultato dell'addizione: (a+b) * c
+        chip.do_mul(layouter.namespace(|| "step 2"), add_cell.value().cloned(), self.c)?;
+
+        // 3. Esegui MUX: sceglie tra (a+b) e c basandosi sul bit
+        chip.do_mux(layouter.namespace(|| "step 3"), add_cell.value().cloned(), self.c, self.bit)?;
+
+        Ok(())
+    }
 }
